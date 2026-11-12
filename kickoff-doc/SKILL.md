@@ -11,7 +11,8 @@ Turn a kickoff call transcript into a builder-facing reference document for a sh
 
 ## Before You Start
 
-Ask the user:
+Use the material and context already provided. Ask only for information that is
+necessary and cannot be inferred:
 
 1. **Who is the primary audience?** (Usually the builder who will implement the work.)
 2. **What other inputs are there?** (Visuals, screenshots, mockups, breadboards from the session.)

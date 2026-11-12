@@ -1,6 +1,11 @@
+---
+name: breadboard-reflection
+description: Review an existing breadboard against its implementation and identify design issues.
+---
+
 # Breadboard Analysis
 
-Reflect on a breadboard by syncing it to the implementation, then finding and fixing design smells. Works on existing breadboards built with the `/breadboarding` skill.
+Reflect on a breadboard by syncing it to the implementation, then identifying design smells. Works on existing breadboards built with the `breadboarding` skill. Follow the user's requested scope and explicit instructions; change implementation code only when requested or otherwise authorized.
 
 ---
 
@@ -172,11 +177,11 @@ The inability to find one idiomatic verb was the signal that this was two distin
 
 When the naming test reveals a bundled affordance:
 
-1. **Split in the code first.** Extract distinct operations into separate functions. Even one-liners are valid if they represent a distinct step-level effect.
-2. **Then update the tables.** Add rows for new affordances with proper IDs, Wires Out, and Returns To.
-3. **Then update the diagram.** The diagram renders the tables.
+1. If code changes are authorized, extract distinct operations into separate functions where useful. Otherwise, describe the proposed split without presenting it as implemented.
+2. Update the tables to reflect the actual implementation; distinguish any proposed design from the current state.
+3. Update the diagram to match the tables.
 
-Never split only in the diagram (e.g., adding unnamed sub-nodes in a subgraph). If it's not a named function in the code and a row in the table, it's not a real affordance.
+Do not present an affordance as implemented unless it corresponds to the code and has a row in the table.
 
 #### Fixing Wiring
 

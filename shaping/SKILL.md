@@ -1,11 +1,16 @@
 ---
 name: shaping
-description: Use this methodology when collaboratively shaping a solution with the user - iterating on problem definition (requirements) and solution options (shapes).
+description: Collaboratively shape a problem and compare solution options before implementation.
 ---
 
 # Shaping Methodology
 
 A structured approach for collaboratively defining problems and exploring solution options.
+
+Follow the user's requested scope and explicit instructions. Use the context they
+provide to start; ask only when a missing decision blocks useful progress. Keep
+related artifacts consistent within the authorized scope and report unresolved
+gaps rather than silently changing unrelated documents.
 
 ---
 
@@ -43,7 +48,8 @@ The system only works if the levels are consistent with each other.
 
 ## Starting a Session
 
-When kicking off a new shaping session, offer the user both entry points:
+When kicking off a new shaping session, start from the context the user provides.
+If the entry point is unclear, offer these options:
 
 - **Start from R (Requirements)** — Describe the problem, pain points, or constraints. Build up requirements and let shapes emerge.
 - **Start from S (Shapes)** — Sketch a solution already in mind. Capture it as a shape and extract requirements as you go.
@@ -308,7 +314,7 @@ Avoid:
 
 ## Breadboards
 
-Use the `/breadboarding` skill to map existing systems or detail a shape into concrete affordances. Breadboarding produces:
+Use the `breadboarding` skill, when available, to map existing systems or detail a shape into concrete affordances. Breadboarding produces:
 - UI Affordances table
 - Non-UI Affordances table
 - Wiring diagram grouped by Place
@@ -446,7 +452,7 @@ Use "Detail X" (not a new letter) to show this is a breakdown of Shape X, not an
 
 ### What Detailing Produces
 
-Use the `/breadboarding` skill to produce:
+Use the `breadboarding` skill, when available, to produce:
 - **UI Affordances table** — Things users see and interact with (inputs, buttons, displays)
 - **Non-UI Affordances table** — Data stores, handlers, queries, services
 - **Wiring diagram** — How affordances connect across places
@@ -547,12 +553,12 @@ See **Multi-Level Consistency** at the top of this document. Changes at any leve
 
 ## Slicing
 
-After a shape is breadboarded, slice it into vertical implementation increments. Use the `/breadboarding` skill for the slicing process — it defines what vertical slices are, the procedure for creating them, and visualization formats.
+After a shape is breadboarded, slice it into vertical implementation increments. Use the `breadboarding` skill, when available, for the slicing process — it defines what vertical slices are, the procedure for creating them, and visualization formats.
 
 **The flow:**
 1. **Parts** → high-level mechanisms in the shape
-2. **Breadboard** → concrete affordances with wiring (use `/breadboarding`)
-3. **Slices** → vertical increments that can each be demoed (use `/breadboarding` slicing section)
+2. **Breadboard** → concrete affordances with wiring (use `breadboarding` when available)
+3. **Slices** → vertical increments that can each be demoed (use `breadboarding` slicing guidance when available)
 
 **Key principle:** Every slice must end in demo-able UI. A slice without visible output is a horizontal layer, not a vertical slice.
 

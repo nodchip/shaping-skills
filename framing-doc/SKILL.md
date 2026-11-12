@@ -11,7 +11,8 @@ Produce a frame document from one or more conversation transcripts. The frame ca
 
 ## Before You Start
 
-Ask the user:
+Use the material and context already provided. Ask only for information that is
+necessary and cannot be inferred:
 
 1. **Which transcripts?** Get specific file paths. Read them in the order the user specifies — conversation order often matters because ideas build across calls.
 2. **What's the topic area?** A rough sense of what these conversations were about (e.g., "AI features," "onboarding redesign") so you know what to listen for.
