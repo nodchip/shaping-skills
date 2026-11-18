@@ -5,7 +5,7 @@ description: Review an existing breadboard against its implementation and identi
 
 # Breadboard Analysis
 
-Reflect on a breadboard by syncing it to the implementation, then identifying design smells. Works on existing breadboards built with the `breadboarding` skill. Follow the user's requested scope and explicit instructions; change implementation code only when requested or otherwise authorized.
+Compare an existing breadboard with its implementation, then identify design issues. Works on existing breadboards built with the `breadboarding` skill. For a review, report discrepancies and proposed fixes. Apply breadboard or implementation changes only when the user authorizes edits to the respective artifact.
 
 ---
 
@@ -23,31 +23,30 @@ The breadboard is complete when it can explain every behavior without hidden ste
 
 Reflection is a two-phase loop: **SEE, then REFLECT.** Always in this order.
 
-### Phase 1: SEE — Sync breadboard to the implementation
+### Phase 1: SEE — Compare the breadboard with the implementation
 
-The code is ground truth. The breadboard may have drifted or been built from a conceptual shape that doesn't match what was actually implemented. Before looking for design problems, make the breadboard accurate.
+Use the implementation as the source for current behavior. Establish what the code does before looking for design problems.
 
 1. **Read the implementation code.** Find the relevant source files. Don't rely on the breadboard's current description of what the code does.
 2. **Inspect the seams.** Walk the code using the checklist in "Reading Seams from the Implementation" below — module boundaries, module-level definitions, function signatures, full call chains, decorators, state co-access.
-3. **Update the breadboard to match.** Add missing nodes, stores, and places. Fix wrong wiring. Remove stale affordances. The goal is: the breadboard now accurately reflects the code's actual structure — even if that structure has problems.
+3. **Identify discrepancies.** Note missing nodes, stores, or places, incorrect wiring, and stale affordances. Include them in the review or correct them when editing the breadboard is in scope.
 
-After Phase 1, the breadboard shows what IS, not what should be.
+Use the verified current behavior as the basis for Phase 2.
 
-### Phase 2: REFLECT — Find and fix design smells
+### Phase 2: REFLECT — Identify design issues
 
 Phase 1 is preparation. Phase 2 is the point. Do not skip it.
 
-Now that the breadboard is accurate, inspect it for design problems. The code's names might be wrong. The split of responsibilities might not be ideal. The wiring might reveal unnecessary coupling or missing abstractions. Walk through each of these concrete checks:
+Inspect the verified behavior for design problems. The code's names might be wrong. The split of responsibilities might not be ideal. The wiring might reveal unnecessary coupling or missing abstractions. Walk through each of these concrete checks:
 
 1. **Trace user stories through the wiring.** Does the path tell a coherent story? Can you explain every behavior without hidden steps?
 2. **Run the naming test on every affordance.** For each node: who is the caller, what is the step-level effect, can you name it with one idiomatic verb? Flag any that resist naming. (See "The Naming Test" in Phase 2 details below.)
 3. **Check for hidden data stores.** For every module-level constant, config object, or template that an affordance reads: is it in the Data Stores table? If code reads it to produce effects, it's a store — even if it's static. Ask: "what does this affordance need to know in order to do its job?" If the answer references something not in the breadboard, it's missing.
 4. **Question the places.** For each place: does everything in it share a single responsibility? Do state and affordances within it co-access each other and stay isolated from other places? If a cluster of affordances, state, and UI elements all serve one job (e.g., "turn natural language into structured commands"), they might deserve their own place — even if the code doesn't separate them yet.
 5. **Check the smells table.** Unexplained behavior, incoherent wiring, naming resistance, etc.
-6. **Fix smells.** Split, merge, rename, or rewire affordances. Update the breadboard.
-7. **Optionally update the code.** If the breadboard reveals a better design, refactor the implementation to match.
+6. **Propose fixes.** Explain which affordances to split, merge, rename, or rewire. Apply authorized changes and keep proposed designs distinct from the current implementation.
 
-The loop: SEE what the code actually does → REFLECT on whether that design is right → fix the breadboard → optionally fix the code → repeat.
+Repeat the check after any authorized changes.
 
 ---
 
@@ -73,9 +72,9 @@ The code is ground truth. Read it before judging the breadboard.
 
 A breadboard designed from a conceptual shape ("user types, LLM processes, app executes") will be a flat pipeline. The code is more specific — it has already decided where the seams are through module splits, function extractions, and static configuration. When a breadboard exists alongside code, read the code's seams and check that the breadboard accounts for them. Not every function needs a node, but every module boundary, every data transformation, and every piece of static configuration that shapes behavior should show up somewhere.
 
-### Updating the Breadboard
+### Corrections to the Breadboard
 
-After inspecting the code, update the breadboard to match what IS:
+After inspecting the code, propose these corrections where applicable. Apply them when breadboard edits are in scope:
 - Add missing nodes for functions the breadboard skipped
 - Add missing stores for constants and configuration the breadboard ignored
 - Fix wiring to match actual call chains
@@ -85,9 +84,9 @@ Do NOT fix design problems yet. The goal of Phase 1 is an accurate picture, even
 
 ---
 
-## Phase 2: REFLECT — Find and Fix Design Smells
+## Phase 2: REFLECT — Identify Design Issues
 
-Now the breadboard is accurate. The code's names might be wrong, the split of responsibilities might not be ideal, the wiring might reveal unnecessary coupling. This is where you judge the design.
+Evaluate the design using the behavior verified in Phase 1.
 
 ### Trace User Stories Through the Wiring
 
@@ -178,8 +177,7 @@ The inability to find one idiomatic verb was the signal that this was two distin
 When the naming test reveals a bundled affordance:
 
 1. If code changes are authorized, extract distinct operations into separate functions where useful. Otherwise, describe the proposed split without presenting it as implemented.
-2. Update the tables to reflect the actual implementation; distinguish any proposed design from the current state.
-3. Update the diagram to match the tables.
+2. When breadboard edits are in scope, update the tables to reflect the actual implementation and update the diagram to match. Label any proposed design separately.
 
 Do not present an affordance as implemented unless it corresponds to the code and has a row in the table.
 
@@ -188,9 +186,8 @@ Do not present an affordance as implemented unless it corresponds to the code an
 When the causality is wrong (A → B in the breadboard but C → B in the code):
 
 1. Read the code to understand the actual call chain.
-2. Update the table first — move the wire to the correct source.
-3. Update the diagram to match.
-4. Re-trace the user story to confirm the wiring now tells a coherent story.
+2. Describe the correct source in the review. When breadboard edits are in scope, update the table first, then the diagram.
+3. Re-trace the user story against the verified wiring.
 
 ---
 

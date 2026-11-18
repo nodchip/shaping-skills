@@ -30,8 +30,8 @@ Each level summarizes or provides a view into the level(s) below it. Lower level
 
 **Changes ripple in both directions:**
 
-- **Change at high level → trickles down:** If you change the shaping doc's parts table, update the slices doc too.
-- **Change at low level → trickles up:** If a slice plan reveals a new mechanism or changes the scope of a slice, the Slices doc and shaping doc must reflect that.
+- **Change at high level → trickles down:** A change to the shaping doc's parts table can affect the Slices doc.
+- **Change at low level → trickles up:** A new mechanism or scope change in a slice plan can affect the Slices doc and shaping doc.
 
 ### The Practice
 
@@ -39,10 +39,7 @@ Whenever making a change:
 
 1. **Identify which level you're touching**
 2. **Ask: "Does this affect documents above or below?"**
-3. **Update all affected levels in the same operation**
-4. **Never let documents drift out of sync**
-
-The system only works if the levels are consistent with each other.
+3. **Update affected documents within the user's requested scope in the same operation.** Report any needed updates outside that scope.
 
 ---
 
@@ -160,7 +157,7 @@ THE fit check is the single table comparing all shapes against all requirements.
 ```
 
 ### Conventions
-- **Always show full requirement text** — never abbreviate or summarize requirements in fit checks
+- **Show full requirement text in the fit check artifact.** Use the requested level of detail when reporting a summary or changes.
 - **Fit check is BINARY** — Use ✅ for pass, ❌ for fail. No other values.
 - **Shape columns contain only ✅ or ❌** — no inline commentary; explanations go in Notes section
 - **Never use ⚠️ or other symbols in fit check** — ⚠️ belongs only in the Parts table's flagged column
@@ -228,23 +225,9 @@ These can happen in any order:
 
 ## Communication
 
-### Show Full Tables
+### Present Tables and Updates
 
-When displaying R (requirements) or any S (shapes), always show every row — never summarize or abbreviate. The full table is the artifact; partial views lose information and break the collaborative process.
-
-- Show all requirements, even if many
-- Show all shape parts, including sub-parts (E1.1, E1.2...)
-- Show all alternatives in fit checks
-
-### Why This Matters
-
-Shaping is collaborative negotiation. The user needs to see the complete picture to:
-- Spot missing requirements
-- Notice inconsistencies
-- Make informed decisions
-- Track what's been decided
-
-Summaries hide detail and shift control away from the user.
+When presenting a table as the deliverable, include every row, including sub-parts (E1.1, E1.2...), and show all alternatives in fit checks. When the user asks for a summary, selected rows, or just the changes, show the requested information.
 
 ### Mark Changes with 🟡
 
@@ -256,7 +239,7 @@ A spike is an investigation task to learn how the existing system works and what
 
 ### File Management
 
-**Always create spikes in their own file** (e.g., `spike.md` or `spike-[topic].md`). Spikes are standalone investigation documents that may be shared or worked on independently from the shaping doc.
+Use a separate file (e.g., `spike.md` or `spike-[topic].md`) when the requested work calls for a standalone investigation document. Otherwise, report the findings in the requested format.
 
 ### Purpose
 
@@ -549,7 +532,7 @@ shaping: true
 
 ### Keeping Documents in Sync
 
-See **Multi-Level Consistency** at the top of this document. Changes at any level must ripple to affected levels above and below.
+Apply **Multi-Level Consistency** above when a change affects documents at other levels.
 
 ## Slicing
 

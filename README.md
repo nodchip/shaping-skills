@@ -1,6 +1,6 @@
 # Shaping Skills
 
-These skills originated as experiments with Claude Code. They have been adapted for Codex and GPT-6.1 Terra, but the original author described them as obsolete and had not recently used them. Validate the results against your own material and workflow.
+These skills began as Claude Code experiments. An earlier adaptation targeted Codex with GPT-6.1 Terra. The original author described the skills as obsolete and had not recently used them. GPT-6.2 compatibility has not been verified. When using the skills with GPT-6.2 in Codex, check the results against your own material and workflow.
 
 Skills for shaping and breadboarding — the methodology from [Shape Up](https://basecamp.com/shapeup) adapted for working with an LLM.
 
